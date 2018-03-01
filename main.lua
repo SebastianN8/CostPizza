@@ -26,8 +26,20 @@ myButton.id = 'initiator'
 
 -- Function 
 local function theCosts(event)
+	-- Variables
 	local subtotal
 	local HST
 	local Total
-
+	-- Math
 	subtotal = 0.75+1.00+(tonumber(diameterTextField.text))
+	HST = subtotal * 0.13
+	Total = subtotal + HST
+	-- Display
+	local mySubtotal = display.newText('Subtotal: $'..subtotal, 500, 900, native.SystemFont, 100)
+	local myHST = display.newText('Tax: $'..HST, 1500, 900, native.SystemFont, 100)
+	local myTotal = display.newText('Total: $'..Total, display.contentCenterX, 1200, native.SystemFont, 100)
+
+end
+
+-- Event listener
+myButton: addEventListener('touch', theCosts)
